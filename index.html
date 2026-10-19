@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#2f6fed" />
+  <title>LifeLog · 我的生活记录</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="app-title">LifeLog</div>
+    <div class="today" id="todayLabel"></div>
+  </header>
+
+  <!-- 统一快速记录框 -->
+  <section class="quick-input">
+    <textarea id="quickText" placeholder="一句话记录今天：&#10;例：今早称68.5，昨晚11点睡早7点起，早餐鸡蛋2个牛奶1杯，健身1小时，午餐牛肉面，午睡30分，买书38元"></textarea>
+    <div class="quick-actions">
+      <button id="btnParse" class="primary">✨ AI 解析并记录</button>
+      <button id="btnManual" class="ghost">手动添加</button>
+    </div>
+    <div id="parseStatus" class="status"></div>
+  </section>
+
+  <!-- 主内容区 -->
+  <main id="view" class="view"></main>
+
+  <!-- 底部 Tab -->
+  <nav class="tabbar">
+    <button class="tab active" data-tab="today">📅 今日</button>
+    <button class="tab" data-tab="food">🍱 饮食</button>
+    <button class="tab" data-tab="weight">⚖️ 体重</button>
+    <button class="tab" data-tab="report">📈 报告</button>
+    <button class="tab" data-tab="settings">⚙️ 设置</button>
+  </nav>
+
+  <!-- 手动添加弹层 -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <span id="modalTitle">手动添加</span>
+        <button id="modalClose" class="x">✕</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/fooddb.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // 注册 Service Worker（使可安装 + 离线可用）
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("service-worker.js").catch(function (e) {
+          console.warn("SW 注册失败（本地 file:// 打开时会失败，需用 http 服务访问）:", e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "LifeLog 生活记录",
+  "short_name": "LifeLog",
+  "description": "记录活动、花销与饮食(含营养)的个人助手",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#2f6fed",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
