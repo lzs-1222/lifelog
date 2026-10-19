@@ -39,7 +39,7 @@
 {"records":[
  {"type":"activity","category":"健身|学习|娱乐|其他","note":"...","duration":分钟数(可选)},
  {"type":"expense","category":"餐饮|交通|购物|其他","note":"...","amount":数字},
- {"type":"food","name":食物名,"qty":克或份数,"meal":"早|午|晚|加餐(可选)"},
+ {"type":"food","name":食物名,"qty":数量,"qtyUnit":"个|份|克(可选,默认个)","meal":"早|午|晚|加餐(可选)"},
  {"type":"sleep","kind":"night|nap","sleepAt":"HH:MM(夜:入睡,可选)","wakeAt":"HH:MM(夜:起床,可选)","duration":分钟数(午睡必填),"note":"..."},
  {"type":"weight","kg":数字(如68.5)},
  {"type":"body","metric":"waist|chest|arm|thigh|fat","value":数字,"unit":"cm|%"}
@@ -47,7 +47,7 @@
 规则：
 - 健身/运动/跑步/撸铁/瑜伽归入 activity, category=健身；学习/看书/上课/写代码归入 activity, category=学习；打游戏/看剧/逛街归入 activity, category=娱乐。
 - 花钱的数字归入 expense，带上 category 与 note。
-- 吃东西归入 food，name 用常见中文食物名，qty 用合理克数或份数，meal 按时间推测(默认午)。
+- 吃东西归入 food，name 用常见中文食物名。qty 是「数量」：若用户按"个/只/份/碗/杯"说，qty 填那个个数(如"两个鸡蛋"→qty:2)；若按"克/两"说，qty 填克数且 qtyUnit:"克"。切勿把"个"当克数。meal 按时间推测(默认午)。
 - 睡眠：说「昨晚11点睡早上7点起」「睡眠23:00-7:00」归入 sleep kind=night 并给 sleepAt/wakeAt；说「午睡30分钟」「午休1小时」归入 sleep kind=nap 并给 duration(分钟)。
 - 体重：说「称重68.5」「体重67.9」「今早称68」归入 weight 并给 kg(数字)。
 - 围度/体脂：说「腰围82」「体脂18%」「臂围32cm」归入 body，metric 用 waist/chest/arm/thigh/fat，value 为数字，unit 为 cm 或 %。
@@ -82,7 +82,7 @@
       });
     }
     if (r.type === "food") {
-      return buildFoodRecord(r.name, r.qty, r.meal, r.note);
+      return buildFoodRecord(r.name, r.qty, r.meal, r.note, r.qtyUnit);
     }
     if (r.type === "sleep") {
       return buildSleepRecord(r.kind, r.sleepAt, r.wakeAt, r.duration, r.note);
@@ -145,21 +145,28 @@
   }
 
   // 由食物名+数量构造饮食记录（用本地库算营养）
-  function buildFoodRecord(name, qty, meal, note) {
+  function buildFoodRecord(name, qty, meal, note, qtyUnit) {
     const food = window.findFood(name || "");
     let kcal = 0, protein = 0, carb = 0, fat = 0;
-    let grams = Number(qty) || 0;
+    let grams = 0;
+    const raw = Number(qty);
     if (food) {
-      if (food.unit === "serving") {
-        // 数据为「单份」营养值，qty 为份数
-        const servings = Number(qty) || 1;
+      const isGram = /克|g/i.test(qtyUnit || "");
+      if (food.unit === "serving" && !isGram) {
+        // serving 类：qty 为份数（如"2个鸡蛋"→2）
+        let servings = isNaN(raw) ? 1 : raw;
+        if (servings <= 0) servings = 1;
+        servings = Math.min(servings, 50); // 兜底：防 AI 给出离谱大数
         kcal = round(food.kcal * servings);
         protein = round(food.protein * servings);
         carb = round(food.carb * servings);
         fat = round(food.fat * servings);
         grams = food.portion * servings;
       } else {
-        const g = Number(qty) || 100;
+        // 100g 类：qty 为克数
+        let g = isNaN(raw) ? 100 : raw;
+        if (g <= 0) g = 100;
+        g = Math.min(g, 5000); // 兜底
         const factor = g / 100;
         kcal = round(food.kcal * factor);
         protein = round(food.protein * factor);
