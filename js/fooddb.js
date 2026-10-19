@@ -128,7 +128,7 @@ window.FOOD_DB = [
   { name: "披萨", alias: [], unit: "serving", portion: 100, kcal: 266, protein: 11, carb: 33, fat: 10 },
   { name: "炸鸡", alias: [], unit: "100g", kcal: 320, protein: 18, carb: 15, fat: 22 },
   { name: "牛肉面", alias: [], unit: "serving", portion: 500, kcal: 550, protein: 25, carb: 70, fat: 18 },
-  { name: "牛肉馅饼", alias: ["馅饼", "肉饼", "牛肉饼"], unit: "serving", portion: 120, kcal: 336, protein: 17, carb: 26, fat: 17 },
+  { name: "牛肉馅饼", alias: ["馅饼", "肉饼", "牛肉饼"], unit: "serving", portion: 120, kcal: 300, protein: 12, carb: 28, fat: 14 },
   { name: "麻辣烫", alias: [], unit: "serving", portion: 500, kcal: 450, protein: 20, carb: 50, fat: 18 },
   { name: "螺蛳粉", alias: [], unit: "serving", portion: 500, kcal: 550, protein: 12, carb: 90, fat: 15 },
   { name: "炒饭", alias: [], unit: "serving", portion: 300, kcal: 450, protein: 12, carb: 70, fat: 14 },

@@ -82,7 +82,7 @@
       });
     }
     if (r.type === "food") {
-      return buildFoodRecord(r.name, r.qty, r.meal, r.note, r.qtyUnit);
+      return buildFoodRecord(r.name, r.qty, r.meal, r.note, r.qtyUnit, r);
     }
     if (r.type === "sleep") {
       return buildSleepRecord(r.kind, r.sleepAt, r.wakeAt, r.duration, r.note);
@@ -145,7 +145,7 @@
   }
 
   // 由食物名+数量构造饮食记录（用本地库算营养）
-  function buildFoodRecord(name, qty, meal, note, qtyUnit) {
+  function buildFoodRecord(name, qty, meal, note, qtyUnit, aiRec) {
     const food = window.findFood(name || "");
     let kcal = 0, protein = 0, carb = 0, fat = 0;
     let grams = 0;
@@ -153,10 +153,14 @@
     if (food) {
       const isGram = /克|g/i.test(qtyUnit || "");
       if (food.unit === "serving" && !isGram) {
-        // serving 类：qty 为份数（如"2个鸡蛋"→2）
+        // serving 类：qty 通常为份数（如"2个鸡蛋"→2）
         let servings = isNaN(raw) ? 1 : raw;
         if (servings <= 0) servings = 1;
-        servings = Math.min(servings, 50); // 兜底：防 AI 给出离谱大数
+        // 智能兜底：若数值远超合理份数(>20)，多半是 AI 把"克"误当个数，按克折算
+        if (servings > 20 && !/个|只|份|碗|杯|根|片|颗/i.test(qtyUnit || "")) {
+          servings = servings / food.portion;
+        }
+        servings = Math.max(0.01, Math.min(servings, 50)); // 兜底：防离谱大数
         kcal = round(food.kcal * servings);
         protein = round(food.protein * servings);
         carb = round(food.carb * servings);
@@ -174,6 +178,13 @@
         fat = round(food.fat * factor);
         grams = g;
       }
+    } else if (aiRec && (aiRec.kcal || aiRec.protein || aiRec.carb || aiRec.fat)) {
+      // 本地库未命中：用 AI 返回的营养作为「估算」值，避免变成 0 营养
+      kcal = round(Number(aiRec.kcal) || 0);
+      protein = round(Number(aiRec.protein) || 0);
+      carb = round(Number(aiRec.carb) || 0);
+      fat = round(Number(aiRec.fat) || 0);
+      grams = isNaN(raw) ? 0 : raw;
     }
     return {
       type: "food",
