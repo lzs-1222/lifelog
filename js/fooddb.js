@@ -45,6 +45,7 @@ window.FOOD_DB = [
   { name: "意大利面", alias: ["意面", "pasta"], unit: "100g", kcal: 158, protein: 5.8, carb: 31, fat: 0.9 },
   { name: "面包", alias: ["吐司"], unit: "100g", kcal: 265, protein: 9, carb: 49, fat: 3.2 },
   { name: "全麦面包", alias: [], unit: "100g", kcal: 247, protein: 13, carb: 41, fat: 3.4 },
+  { name: "黑麦面包", alias: ["黑麦"], unit: "100g", kcal: 250, protein: 9, carb: 45, fat: 3.5 },
   { name: "燕麦", alias: ["燕麦片"], unit: "100g", kcal: 389, protein: 17, carb: 66, fat: 7 },
   { name: "小米粥", alias: [], unit: "100g", kcal: 46, protein: 1.4, carb: 9, fat: 0.5 },
   { name: "粥", alias: ["白粥"], unit: "100g", kcal: 46, protein: 1.1, carb: 9.8, fat: 0.3 },
@@ -127,12 +128,90 @@ window.FOOD_DB = [
   { name: "披萨", alias: [], unit: "serving", portion: 100, kcal: 266, protein: 11, carb: 33, fat: 10 },
   { name: "炸鸡", alias: [], unit: "100g", kcal: 320, protein: 18, carb: 15, fat: 22 },
   { name: "牛肉面", alias: [], unit: "serving", portion: 500, kcal: 550, protein: 25, carb: 70, fat: 18 },
+  { name: "牛肉馅饼", alias: ["馅饼", "肉饼", "牛肉饼"], unit: "serving", portion: 120, kcal: 336, protein: 17, carb: 26, fat: 17 },
   { name: "麻辣烫", alias: [], unit: "serving", portion: 500, kcal: 450, protein: 20, carb: 50, fat: 18 },
   { name: "螺蛳粉", alias: [], unit: "serving", portion: 500, kcal: 550, protein: 12, carb: 90, fat: 15 },
   { name: "炒饭", alias: [], unit: "serving", portion: 300, kcal: 450, protein: 12, carb: 70, fat: 14 },
   { name: "盖浇饭", alias: [], unit: "serving", portion: 500, kcal: 600, protein: 25, carb: 80, fat: 20 },
   { name: "寿司", alias: [], unit: "serving", portion: 200, kcal: 350, protein: 15, carb: 60, fat: 6 },
-  { name: "拉面", alias: [], unit: "serving", portion: 500, kcal: 480, protein: 20, carb: 75, fat: 12 }
+  { name: "拉面", alias: [], unit: "serving", portion: 500, kcal: 480, protein: 20, carb: 75, fat: 12 },
+
+  // ---- 早点/小吃 ----
+  { name: "花卷", alias: [], unit: "serving", portion: 80, kcal: 220, protein: 6, carb: 45, fat: 1.5 },
+  { name: "烧麦", alias: ["烧卖"], unit: "serving", portion: 40, kcal: 90, protein: 4, carb: 14, fat: 2.5 },
+  { name: "汤包", alias: ["小笼包", "小笼汤包"], unit: "serving", portion: 40, kcal: 95, protein: 5, carb: 10, fat: 4 },
+  { name: "煎饼果子", alias: ["煎饼"], unit: "serving", portion: 250, kcal: 430, protein: 14, carb: 55, fat: 16 },
+  { name: "鸡蛋灌饼", alias: ["灌饼"], unit: "serving", portion: 150, kcal: 380, protein: 12, carb: 45, fat: 17 },
+  { name: "手抓饼", alias: [], unit: "serving", portion: 100, kcal: 300, protein: 7, carb: 35, fat: 15 },
+  { name: "肉夹馍", alias: [], unit: "serving", portion: 200, kcal: 450, protein: 20, carb: 50, fat: 18 },
+  { name: "凉皮", alias: [], unit: "serving", portion: 350, kcal: 350, protein: 6, carb: 70, fat: 5 },
+  { name: "肠粉", alias: [], unit: "serving", portion: 250, kcal: 280, protein: 8, carb: 50, fat: 6 },
+  { name: "蛋炒饭", alias: [], unit: "serving", portion: 300, kcal: 470, protein: 13, carb: 72, fat: 13 },
+  { name: "米粉", alias: [], unit: "serving", portion: 400, kcal: 420, protein: 9, carb: 85, fat: 3 },
+  { name: "年糕", alias: [], unit: "100g", kcal: 154, protein: 3, carb: 35, fat: 0.4 },
+  { name: "麻薯", alias: [], unit: "serving", portion: 50, kcal: 160, protein: 1, carb: 35, fat: 2 },
+
+  // ---- 肉制品/加工 ----
+  { name: "鸡翅", alias: [], unit: "100g", kcal: 203, protein: 19, carb: 0, fat: 14 },
+  { name: "午餐肉", alias: [], unit: "100g", kcal: 231, protein: 10, carb: 9, fat: 18 },
+  { name: "肉丸", alias: ["肉圆"], unit: "100g", kcal: 250, protein: 14, carb: 10, fat: 17 },
+  { name: "羊肉串", alias: [], unit: "serving", portion: 50, kcal: 180, protein: 11, carb: 1, fat: 15 },
+  { name: "卤蛋", alias: [], unit: "serving", portion: 50, kcal: 90, protein: 7, carb: 2, fat: 6 },
+  { name: "皮蛋", alias: ["松花蛋"], unit: "serving", portion: 60, kcal: 100, protein: 7, carb: 2, fat: 7 },
+  { name: "鹌鹑蛋", alias: [], unit: "serving", portion: 10, kcal: 16, protein: 1.3, carb: 0.4, fat: 1.1 },
+
+  // ---- 豆制品补充 ----
+  { name: "豆干", alias: ["豆腐干"], unit: "100g", kcal: 140, protein: 16, carb: 5, fat: 7 },
+  { name: "千张", alias: ["豆腐皮", "豆皮"], unit: "100g", kcal: 262, protein: 24, carb: 5, fat: 17 },
+  { name: "毛豆", alias: ["青豆"], unit: "100g", kcal: 131, protein: 13, carb: 11, fat: 5 },
+  { name: "腐乳", alias: ["酱豆腐"], unit: "100g", kcal: 130, protein: 10, carb: 6, fat: 8 },
+
+  // ---- 蔬菜补充 ----
+  { name: "西葫芦", alias: [], unit: "100g", kcal: 17, protein: 1, carb: 3.5, fat: 0.2 },
+  { name: "秋葵", alias: [], unit: "100g", kcal: 33, protein: 2, carb: 7, fat: 0.2 },
+  { name: "芦笋", alias: [], unit: "100g", kcal: 20, protein: 2.2, carb: 3.9, fat: 0.1 },
+  { name: "紫甘蓝", alias: ["紫 cabbage"], unit: "100g", kcal: 31, protein: 1.4, carb: 7, fat: 0.2 },
+  { name: "莲藕", alias: ["藕"], unit: "100g", kcal: 74, protein: 2.6, carb: 17, fat: 0.1 },
+  { name: "山药", alias: [], unit: "100g", kcal: 57, protein: 1.9, carb: 13, fat: 0.2 },
+  { name: "芋头", alias: [], unit: "100g", kcal: 79, protein: 2.2, carb: 18, fat: 0.2 },
+
+  // ---- 水果补充 ----
+  { name: "樱桃", alias: [], unit: "100g", kcal: 63, protein: 1, carb: 16, fat: 0.2 },
+  { name: "荔枝", alias: [], unit: "100g", kcal: 66, protein: 0.8, carb: 17, fat: 0.4 },
+  { name: "龙眼", alias: ["桂圆"], unit: "100g", kcal: 71, protein: 1.3, carb: 18, fat: 0.1 },
+  { name: "哈密瓜", alias: ["甜瓜"], unit: "100g", kcal: 34, protein: 0.8, carb: 8, fat: 0.2 },
+  { name: "木瓜", alias: [], unit: "100g", kcal: 43, protein: 0.5, carb: 11, fat: 0.3 },
+  { name: "牛油果", alias: ["鳄梨"], unit: "serving", portion: 150, kcal: 240, protein: 3, carb: 13, fat: 22 },
+  { name: "椰子水", alias: [], unit: "serving", portion: 330, kcal: 70, protein: 0.5, carb: 17, fat: 0.2 },
+
+  // ---- 坚果/零食补充 ----
+  { name: "开心果", alias: [], unit: "100g", kcal: 562, protein: 20, carb: 28, fat: 45 },
+  { name: "夏威夷果", alias: ["澳洲坚果"], unit: "100g", kcal: 718, protein: 8, carb: 14, fat: 76 },
+  { name: "碧根果", alias: ["pecan"], unit: "100g", kcal: 692, protein: 9, carb: 14, fat: 72 },
+  { name: "能量棒", alias: [], unit: "serving", portion: 50, kcal: 200, protein: 8, carb: 25, fat: 7 },
+  { name: "蛋黄派", alias: [], unit: "serving", portion: 40, kcal: 160, protein: 2, carb: 25, fat: 6 },
+
+  // ---- 饮品补充 ----
+  { name: "椰奶", alias: [], unit: "serving", portion: 250, kcal: 150, protein: 1, carb: 12, fat: 10 },
+  { name: "豆奶", alias: ["豆乳"], unit: "serving", portion: 250, kcal: 110, protein: 6, carb: 14, fat: 3 },
+  { name: "卡布奇诺", alias: [], unit: "serving", portion: 240, kcal: 120, protein: 6, carb: 11, fat: 6 },
+  { name: "摩卡", alias: [], unit: "serving", portion: 240, kcal: 200, protein: 6, carb: 25, fat: 8 },
+  { name: "运动饮料", alias: ["电解质水"], unit: "serving", portion: 500, kcal: 120, protein: 0, carb: 30, fat: 0 },
+  { name: "苏打水", alias: [], unit: "serving", portion: 330, kcal: 0, protein: 0, carb: 0, fat: 0 },
+  { name: "鸡尾酒", alias: [], unit: "serving", portion: 150, kcal: 180, protein: 0.2, carb: 15, fat: 0 },
+
+  // ---- 快餐/外卖补充 ----
+  { name: "黄焖鸡", alias: ["黄焖鸡米饭"], unit: "serving", portion: 500, kcal: 650, protein: 35, carb: 70, fat: 25 },
+  { name: "兰州拉面", alias: ["牛肉拉面"], unit: "serving", portion: 500, kcal: 500, protein: 25, carb: 75, fat: 12 },
+  { name: "重庆小面", alias: [], unit: "serving", portion: 400, kcal: 450, protein: 12, carb: 70, fat: 15 },
+  { name: "煲仔饭", alias: [], unit: "serving", portion: 550, kcal: 700, protein: 25, carb: 95, fat: 22 },
+  { name: "轻食沙拉", alias: ["沙拉"], unit: "serving", portion: 350, kcal: 300, protein: 15, carb: 25, fat: 15 },
+  { name: "关东煮", alias: [], unit: "serving", portion: 300, kcal: 250, protein: 15, carb: 20, fat: 10 },
+  { name: "麻辣香锅", alias: [], unit: "serving", portion: 500, kcal: 650, protein: 25, carb: 40, fat: 40 },
+  { name: "冒菜", alias: [], unit: "serving", portion: 500, kcal: 450, protein: 22, carb: 35, fat: 22 },
+  { name: "沙县小吃", alias: ["沙县"], unit: "serving", portion: 500, kcal: 550, protein: 25, carb: 70, fat: 18 },
+  { name: "肯德基", alias: ["KFC"], unit: "serving", portion: 400, kcal: 800, protein: 35, carb: 80, fat: 40 },
+  { name: "麦当劳", alias: ["M记"], unit: "serving", portion: 400, kcal: 750, protein: 32, carb: 78, fat: 35 }
 ];
 
 // 简单搜索：按名称或别名匹配，返回食物对象或 null
